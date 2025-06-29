@@ -35,7 +35,7 @@ namespace CSharpStrings.Application.Handlers.StepOne
 
             //if request.Numbers contains a comma, split it into an array of strings
             if (!request.Numbers.Contains(','))
-            {   
+            {
                 //no virgola
                 try
                 {
@@ -47,52 +47,28 @@ namespace CSharpStrings.Application.Handlers.StepOne
                     //errore
                     response.Error = $"Invalid number: {request.Numbers}";
                 }
-            } 
+            }
             else
             {
                 string[] numberList = request.Numbers.Split(',');
 
-                try
+                var number = 0;
+                foreach (string? numberString in numberList)
                 {
-                    var number = 0;
-                    foreach (string? numberString in numberList)
+                    try
                     {
-
-                        if (number = int.Parse(numberString))
-                        {
-                            response.Sum += number;
-                        }
-                        else
-                        {
-                        }
-
-            }
-
-            return Task.FromResult(response);
-
-
-
-
-
-            if (!string.IsNullOrWhiteSpace(request.Numbers))
-            {
-                string[]? numberStrings = request.Numbers.Split(',');
-                // Convert the strings to integers and calculate the sum
-
-                int number = 0;
-                foreach (string? numberString in numberStrings)
-                {
-
-                    if (number = numberString.TryParse(numberString))
-                    {
-                        response.Sum += number;
+                        //int ok
+                        number += int.Parse(request.Numbers);
                     }
-                    else
+                    catch (FormatException)
                     {
-                        // Handle invalid input gracefully, e.g., ignore or throw an exception
-                        throw new ArgumentException($"Invalid number: {numberString}");
+                        //errore
+                        response.Error = $"Invalid number: {request.Numbers}";
+                        return Task.FromResult(response);
                     }
                 }
+
+                response.Sum = number;
             }
 
             return Task.FromResult(response);

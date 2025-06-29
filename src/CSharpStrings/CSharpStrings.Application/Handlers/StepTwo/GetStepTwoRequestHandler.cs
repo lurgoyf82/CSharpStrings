@@ -9,18 +9,6 @@ namespace CSharpStrings.Application.Handlers.StepTwo
     {
         public Task<GetStepTwoResponseDto> Handle(GetStepTwoRequestDto request, CancellationToken cancellationToken)
         {
-            var options = new CalculatorOptions
-            {
-                Numbers = request.Numbers,
-                Delimiters = request.Delimiters,
-                AllowNegatives = request.AllowNegatives,
-                IgnoreAboveValue = request.IgnoreAboveValue,
-                MaxNumbers = request.MaxNumbers
-            };
-
-
-
-
             var response = new GetStepTwoResponseDto();
             response.Sum = 0;
 
