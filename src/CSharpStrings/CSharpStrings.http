@@ -1,9 +1,0 @@
-@CSharpStrings_HostAddress = https://localhost:5001
-
-POST {{CSharpStrings_HostAddress}}/Strings/GetCartResponse
-Content-Type: application/json
-{
-  "items": ["1 book at 12.49"]
-}
-
-###
