@@ -10,14 +10,14 @@ namespace CSharpStrings.Controllers
 {
     [ApiController]
     [Route("[controller]")]
-    public class SalesController : Controller
+    public class StringsController : Controller
     {
 
         private readonly IMediator _mediator;
-        private readonly ILogger<SalesController> _logger;
+        private readonly ILogger<StringsController> _logger;
 
 
-        public SalesController(IMediator mediator, ILogger<SalesController> logger)
+        public StringsController(IMediator mediator, ILogger<StringsController> logger)
         {
             _mediator = mediator;
             _logger = logger;

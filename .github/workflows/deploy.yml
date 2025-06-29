@@ -3,7 +3,7 @@ name: Deploy CSharpStrings .NET9 VM
 on:
   push:
     branches:
-      - master
+      - develop_soluzione_A_deploy
 
 jobs:
   deploy:
@@ -16,8 +16,8 @@ jobs:
         with:
           dotnet-version: '9.0.x'
           
-      - name: Publish
-        run: dotnet publish ./src/CSharpStrings/CSharpStrings.csproj -c Release -o publish
+      - name: Publish .NET
+        run: dotnet publish ./src/CSharpStrings/CSharpStrings.Api/CSharpStrings.Api.csproj -c Release -o publish
 
       - name: Deploy via SSH
         uses: appleboy/scp-action@master
@@ -35,4 +35,4 @@ jobs:
           username: deployer
           key: ${{ secrets.SSH_PRIVATE_KEY }}
           script: |
-            sudo systemctl restart csharpsales.service
+            sudo systemctl restart csharpstrings.service
