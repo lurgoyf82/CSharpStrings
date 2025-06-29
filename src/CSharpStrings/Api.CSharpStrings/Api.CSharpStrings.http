@@ -1,6 +1,0 @@
-@Api.CSharpStrings_HostAddress = http://localhost:5221
-
-GET {{Api.CSharpStrings_HostAddress}}/weatherforecast/
-Accept: application/json
-
-###

@@ -1,18 +1,33 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
-VisualStudioVersion = 17.14.36221.1
+VisualStudioVersion = 17.14.36221.1 d17.14
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Api.CSharpStrings", "src\CSharpStrings\Api.CSharpStrings\Api.CSharpStrings.csproj", "{A4B201CA-0181-4112-BEE1-E8ED30C2CCBC}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Application.CSharpStrings", "src\CSharpStrings\Application.CSharpStrings\Application.CSharpStrings.csproj", "{C7142B85-020B-4E64-93D1-B851D214FB62}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Domain.CSharpStrings", "src\CSharpStrings\Domain.CSharpStrings\Domain.CSharpStrings.csproj", "{48862A32-9D88-480C-8C5C-8E81A9E04326}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Infrastructure.CSharpStrings", "src\CSharpStrings\Infrastructure.CSharpStrings\Infrastructure.CSharpStrings.csproj", "{F9EA7D1A-BE33-440F-AC08-564565335373}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CSharpStrings.Api", "src\CSharpStrings\CSharpStrings.Api\CSharpStrings.Api.csproj", "{090407DF-12CF-4BA4-83A3-4F233E772620}"
 	ProjectSection(ProjectDependencies) = postProject
-		{48862A32-9D88-480C-8C5C-8E81A9E04326} = {48862A32-9D88-480C-8C5C-8E81A9E04326}
-		{C7142B85-020B-4E64-93D1-B851D214FB62} = {C7142B85-020B-4E64-93D1-B851D214FB62}
+		{CE1AD5B5-A611-4684-A68C-099C211576C2} = {CE1AD5B5-A611-4684-A68C-099C211576C2}
+		{DF1B57B5-F692-4289-A504-DCBDF4802F73} = {DF1B57B5-F692-4289-A504-DCBDF4802F73}
+	EndProjectSection
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CSharpStrings.Domain", "src\CSharpStrings\CSharpStrings.Domain\CSharpStrings.Domain.csproj", "{1AFD2389-0496-406E-8C2D-62EA19F44704}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CSharpStrings.Infrastructure", "src\CSharpStrings\CSharpStrings.Infrastructure\CSharpStrings.Infrastructure.csproj", "{CE1AD5B5-A611-4684-A68C-099C211576C2}"
+	ProjectSection(ProjectDependencies) = postProject
+		{1AFD2389-0496-406E-8C2D-62EA19F44704} = {1AFD2389-0496-406E-8C2D-62EA19F44704}
+		{DF1B57B5-F692-4289-A504-DCBDF4802F73} = {DF1B57B5-F692-4289-A504-DCBDF4802F73}
+	EndProjectSection
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CSharpStrings.Application", "src\CSharpStrings\CSharpStrings.Application\CSharpStrings.Application.csproj", "{DF1B57B5-F692-4289-A504-DCBDF4802F73}"
+	ProjectSection(ProjectDependencies) = postProject
+		{1AFD2389-0496-406E-8C2D-62EA19F44704} = {1AFD2389-0496-406E-8C2D-62EA19F44704}
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = ".github", ".github", "{02EA681E-C7D8-13C7-8484-4AC65E1B71E8}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "workflows", "workflows", "{69B08BE5-5482-41C3-9F93-586BAE287FFB}"
+	ProjectSection(SolutionItems) = preProject
+		..\..\CSharpSales\.github\workflows\deploy.yml = ..\..\CSharpSales\.github\workflows\deploy.yml
+		..\..\CSharpSales\.github\workflows\deploy_aws.yml = ..\..\CSharpSales\.github\workflows\deploy_aws.yml
 	EndProjectSection
 EndProject
 Global
@@ -21,27 +36,30 @@ Global
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{A4B201CA-0181-4112-BEE1-E8ED30C2CCBC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{A4B201CA-0181-4112-BEE1-E8ED30C2CCBC}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{A4B201CA-0181-4112-BEE1-E8ED30C2CCBC}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{A4B201CA-0181-4112-BEE1-E8ED30C2CCBC}.Release|Any CPU.Build.0 = Release|Any CPU
-		{C7142B85-020B-4E64-93D1-B851D214FB62}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{C7142B85-020B-4E64-93D1-B851D214FB62}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{C7142B85-020B-4E64-93D1-B851D214FB62}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{C7142B85-020B-4E64-93D1-B851D214FB62}.Release|Any CPU.Build.0 = Release|Any CPU
-		{48862A32-9D88-480C-8C5C-8E81A9E04326}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{48862A32-9D88-480C-8C5C-8E81A9E04326}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{48862A32-9D88-480C-8C5C-8E81A9E04326}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{48862A32-9D88-480C-8C5C-8E81A9E04326}.Release|Any CPU.Build.0 = Release|Any CPU
-		{F9EA7D1A-BE33-440F-AC08-564565335373}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{F9EA7D1A-BE33-440F-AC08-564565335373}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{F9EA7D1A-BE33-440F-AC08-564565335373}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{F9EA7D1A-BE33-440F-AC08-564565335373}.Release|Any CPU.Build.0 = Release|Any CPU
+		{090407DF-12CF-4BA4-83A3-4F233E772620}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{090407DF-12CF-4BA4-83A3-4F233E772620}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{090407DF-12CF-4BA4-83A3-4F233E772620}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{090407DF-12CF-4BA4-83A3-4F233E772620}.Release|Any CPU.Build.0 = Release|Any CPU
+		{1AFD2389-0496-406E-8C2D-62EA19F44704}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1AFD2389-0496-406E-8C2D-62EA19F44704}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1AFD2389-0496-406E-8C2D-62EA19F44704}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1AFD2389-0496-406E-8C2D-62EA19F44704}.Release|Any CPU.Build.0 = Release|Any CPU
+		{CE1AD5B5-A611-4684-A68C-099C211576C2}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{CE1AD5B5-A611-4684-A68C-099C211576C2}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{CE1AD5B5-A611-4684-A68C-099C211576C2}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{CE1AD5B5-A611-4684-A68C-099C211576C2}.Release|Any CPU.Build.0 = Release|Any CPU
+		{DF1B57B5-F692-4289-A504-DCBDF4802F73}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{DF1B57B5-F692-4289-A504-DCBDF4802F73}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{DF1B57B5-F692-4289-A504-DCBDF4802F73}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{DF1B57B5-F692-4289-A504-DCBDF4802F73}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
 	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{69B08BE5-5482-41C3-9F93-586BAE287FFB} = {02EA681E-C7D8-13C7-8484-4AC65E1B71E8}
+	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
-		SolutionGuid = {D29BD86B-CC40-4B7E-ACB3-01950F91C0D0}
+		SolutionGuid = {82FF16AF-8230-459C-B6FC-8E338D3226A8}
 	EndGlobalSection
 EndGlobal
