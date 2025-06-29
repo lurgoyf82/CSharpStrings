@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
-VisualStudioVersion = 17.14.36221.1 d17.14
+VisualStudioVersion = 17.14.36221.1
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CSharpStrings.Api", "src\CSharpStrings\CSharpStrings.Api\CSharpStrings.Api.csproj", "{090407DF-12CF-4BA4-83A3-4F233E772620}"
 	ProjectSection(ProjectDependencies) = postProject
@@ -24,10 +24,9 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CSharpStrings.Application",
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = ".github", ".github", "{02EA681E-C7D8-13C7-8484-4AC65E1B71E8}"
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "workflows", "workflows", "{69B08BE5-5482-41C3-9F93-586BAE287FFB}"
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "workflows", "workflows", "{9E9168FA-E4A7-4468-9367-02DBABD45791}"
 	ProjectSection(SolutionItems) = preProject
-		..\..\CSharpSales\.github\workflows\deploy.yml = ..\..\CSharpSales\.github\workflows\deploy.yml
-		..\..\CSharpSales\.github\workflows\deploy_aws.yml = ..\..\CSharpSales\.github\workflows\deploy_aws.yml
+		deploy.yml = deploy.yml
 	EndProjectSection
 EndProject
 Global
@@ -57,7 +56,7 @@ Global
 		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(NestedProjects) = preSolution
-		{69B08BE5-5482-41C3-9F93-586BAE287FFB} = {02EA681E-C7D8-13C7-8484-4AC65E1B71E8}
+		{9E9168FA-E4A7-4468-9367-02DBABD45791} = {02EA681E-C7D8-13C7-8484-4AC65E1B71E8}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {82FF16AF-8230-459C-B6FC-8E338D3226A8}
