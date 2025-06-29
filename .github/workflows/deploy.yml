@@ -35,4 +35,4 @@ jobs:
           username: deployer
           key: ${{ secrets.SSH_PRIVATE_KEY }}
           script: |
-            sudo systemctl restart csharpsales.service
+            sudo systemctl restart csharpstrings.service
