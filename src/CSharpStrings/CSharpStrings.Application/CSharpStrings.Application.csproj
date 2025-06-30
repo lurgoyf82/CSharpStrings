@@ -17,5 +17,6 @@
 
   <ItemGroup>
     <ProjectReference Include="..\CSharpStrings.Domain\CSharpStrings.Domain.csproj" />
+    <ProjectReference Include="..\CSharpStrings.Infrastructure\CSharpStrings.Infrastructure.csproj" />
   </ItemGroup>
 </Project>

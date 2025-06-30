@@ -18,6 +18,6 @@
         public bool AllowNegatives { get; set; } = true;
 
         // Ignore numbers bigger than this threshold (e.g., 1000)
-        public int IgnoreAboveValue { get; set; } = 0;
+        public int IgnoreAboveOrEqual { get; set; } = 0;
     }
 }

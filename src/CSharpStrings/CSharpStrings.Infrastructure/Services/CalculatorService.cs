@@ -65,9 +65,11 @@ namespace CSharpStrings.Infrastructure.Services
                 }
             }
 
-            if (options.IgnoreAboveValue > 0)
+            if (options.IgnoreAboveOrEqual > 0)
             {
-                numbers = numbers.Where(n => n <= options.IgnoreAboveValue).ToList();
+                //Se ci sono numeri maggiori o uguali di IgnoreAboveOrEqual, li ignora
+                //Nota: se IgnoreAboveOrEqual è 0, non viene applicata alcuna condizione
+                numbers = numbers.Where(n => n < options.IgnoreAboveOrEqual).ToList();
             }
 
             //finalmente se tutte le condizioni sono rispettate, calcola la somma (e ritorna 0 se la stringa è nulla o vuota)
@@ -75,8 +77,9 @@ namespace CSharpStrings.Infrastructure.Services
         }
 
 
+
         // Restituisce i delimitatori custom separati dalla sezione con i numeri
-        public static (string delimiterSection, string numbersSection) SplitHeader(string? input)
+        public (string delimiterSection, string numbersSection) SplitHeader(string? input)
         {
             // Nessun header custom: torna la stringa intera come numeri
             if (string.IsNullOrEmpty(input) || !input.StartsWith("//["))
@@ -92,7 +95,6 @@ namespace CSharpStrings.Infrastructure.Services
             return (input[..end],    // substring dallo 0 escluso end (header)
                     input[end..]);   // substring da end alla fine   (numeri)
         }
-
 
         public List<int> ParseNumbersSection(string? numberSection, List<string> delimiters)
         {
@@ -130,8 +132,15 @@ namespace CSharpStrings.Infrastructure.Services
 
         public List<string> ParseDelimeterSection(string delimiterSection)
         {
-            // Remove the initial "//[" and final "]//"
-            delimiterSection = delimiterSection.TrimStart('/').TrimStart('[').TrimEnd(']');
+            // Valida header: deve iniziare con "//[" e terminare con "]//"
+            if (!delimiterSection.StartsWith("//[") || !delimiterSection.EndsWith("]//"))
+            {
+                throw new FormatException("Header delimitatori non valido.");
+            }
+
+            // Rimuove il prefisso "//[" (3 char) e il suffisso "]//" (3 char)
+            delimiterSection = delimiterSection.Substring(3, delimiterSection.Length - 6);
+
 
             if (string.IsNullOrWhiteSpace(delimiterSection))
             {
@@ -153,7 +162,6 @@ namespace CSharpStrings.Infrastructure.Services
 
             return delimetersArray.ToList();
         }
-
 
         public List<string> GetCustomDelimiters(string? input)
         {
