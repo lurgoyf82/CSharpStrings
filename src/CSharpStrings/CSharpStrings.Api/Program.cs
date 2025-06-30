@@ -2,7 +2,7 @@ using CSharpStrings.Application.Handlers.StepOne;
 using Microsoft.OpenApi.Models;
 using Swashbuckle.AspNetCore.Filters;
 
-namespace CSharpStrings
+namespace CSharpStrings.Api
 {
     public class Program
     {

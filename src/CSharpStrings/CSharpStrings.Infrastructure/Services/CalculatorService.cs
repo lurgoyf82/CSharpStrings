@@ -1,5 +1,5 @@
 ﻿using CSharpStrings.Domain.Entities;
-using CSharpStrings.Domain.Services;
+using CSharpStrings.Domain.Interfaces;
 
 namespace CSharpStrings.Infrastructure.Services
 {

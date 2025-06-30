@@ -1,5 +1,5 @@
-using CSharpStrings.Application.DTOs.Requests;
-using CSharpStrings.Application.DTOs.Responses;
+using CSharpStrings.Application.DTOs.Requests.StepFourRequests;
+using CSharpStrings.Application.DTOs.Responses.StepFourResponses;
 using CSharpStrings.Domain.Entities;
 using CSharpStrings.Infrastructure.Services;
 using MediatR;

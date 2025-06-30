@@ -1,4 +1,4 @@
-﻿using CSharpStrings.Application.DTOs.Requests;
+﻿using CSharpStrings.Application.DTOs.Requests.StepFourRequests;
 using Swashbuckle.AspNetCore.Filters;
 
 namespace CSharpStrings.Api.SwaggerExamples

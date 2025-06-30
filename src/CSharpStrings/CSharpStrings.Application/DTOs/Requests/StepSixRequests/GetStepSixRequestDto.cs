@@ -1,7 +1,7 @@
-﻿using CSharpStrings.Application.DTOs.Responses;
+﻿using CSharpStrings.Application.DTOs.Responses.StepSixResponses;
 using MediatR;
 
-namespace CSharpStrings.Application.DTOs.Requests
+namespace CSharpStrings.Application.DTOs.Requests.StepSixRequests
 {
     public class GetStepSixRequestDto : IRequest<GetStepSixResponseDto>
     {
