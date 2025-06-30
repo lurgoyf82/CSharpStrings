@@ -18,7 +18,7 @@ The application is continuously deployed to a VM and publicly reachable at
 
 ## API usage
 
-Each kata step has its own endpoint.
+Each step step has its own endpoint.
 Send a JSON body containing the numbers string:
 
 ```json
