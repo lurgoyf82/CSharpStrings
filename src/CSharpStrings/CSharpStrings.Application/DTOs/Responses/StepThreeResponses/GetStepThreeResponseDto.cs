@@ -1,4 +1,4 @@
-﻿namespace CSharpStrings.Application.DTOs.Responses
+﻿namespace CSharpStrings.Application.DTOs.Responses.StepThreeResponses
 {
     public class GetStepThreeResponseDto
     {

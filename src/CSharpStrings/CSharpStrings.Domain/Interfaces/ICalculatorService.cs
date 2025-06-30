@@ -1,6 +1,6 @@
 ﻿using CSharpStrings.Domain.Entities;
 
-namespace CSharpStrings.Domain.Services
+namespace CSharpStrings.Domain.Interfaces
 {
     public interface ICalculatorService
     {

@@ -1,29 +1,24 @@
 # CSharpStrings
 
-CSharpStrings is an ASP.NET Core API that implements the String Calculator kata.
+CSharpStrings is an ASP.NET Core API that implements the String Calculator.
 Two alternative solutions are provided:
 
 - **develop_soluzione_A** – a more monolithic approach.
-- **develop_soluzione_B** – the preferred implementation that resolves all seven kata steps through a single service configured by options.
+- **develop_soluzione_B** – the preferred implementation that resolves all seven steps through a single service configured by options.
 
 The application is continuously deployed to a VM and publicly reachable at
-[https://strings.raphp.net](https://strings.raphp.net).  There is no AWS deployment.
+[https://strings.raphp.net](https://strings.raphp.net).
 
 ## Running the project
 
 1. Install the [.NET SDK 9](https://dotnet.microsoft.com/).
-2. Start the API:
+2. Start the API with IIS Express option on Visual Studio
 
-   ```bash
-   dotnet run --project src/CSharpStrings/CSharpStrings.Api
-   ```
-
-   By default the API listens on `https://localhost:5001` and exposes Swagger UI at `/swagger`.
+   By default the API listens on `https://localhost:44310` and exposes Swagger UI at `https://localhost:44310/swagger`.
 
 ## API usage
 
-Each kata step has its own endpoint under `Strings/` (e.g.
-`POST /Strings/GetStepOne`).
+Each kata step has its own endpoint.
 Send a JSON body containing the numbers string:
 
 ```json
@@ -41,42 +36,6 @@ Deployment is handled by the workflow in `.github/workflows/deploy.yml`.
 Every push to the `master` branch publishes the application and deploys it via
 SSH to the VM, then restarts the service.  The live instance is available at
 <https://strings.raphp.net>.
-
-## Example TDD with xUnit
-
-The repository includes a small xUnit project under `tests/`.
-A sample test for the first step looks like this:
-
-```csharp
-using CSharpStrings.Domain.Entities;
-using CSharpStrings.Infrastructure.Services;
-using Xunit;
-
-public class CalculatorServiceTests
-{
-    [Theory]
-    [InlineData("", 0)]
-    [InlineData("1", 1)]
-    [InlineData("1,2", 3)]
-    public void StepOne_SumsBasicNumbers(string input, int expected)
-    {
-        var options = new CalculatorOptions
-        {
-            Delimiters = new List<string> { "," },
-            AllowMultipleDelimeters = false,
-            MaxDelimeterSize = 0,
-            MaxNumbers = 3,
-            AllowNegatives = true,
-            IgnoreAboveOrEqual = 0
-        };
-
-        var service = new CalculatorService();
-        var result = service.CalculateSum(input, options);
-
-        Assert.Equal(expected, result);
-    }
-}
-```
 
 ## License
 

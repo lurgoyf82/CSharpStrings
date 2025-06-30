@@ -1,12 +1,24 @@
 ﻿using CSharpStrings.Api.SwaggerExamples;
-using CSharpStrings.Application.DTOs.Requests;
-using CSharpStrings.Application.DTOs.Responses;
+using CSharpStrings.Application.DTOs.Requests.StepFiveRequests;
+using CSharpStrings.Application.DTOs.Requests.StepFourRequests;
+using CSharpStrings.Application.DTOs.Requests.StepOneRequests;
+using CSharpStrings.Application.DTOs.Requests.StepSevenRequests;
+using CSharpStrings.Application.DTOs.Requests.StepSixRequests;
+using CSharpStrings.Application.DTOs.Requests.StepThreeRequests;
+using CSharpStrings.Application.DTOs.Requests.StepTwoRequests;
+using CSharpStrings.Application.DTOs.Responses.StepFiveResponses;
+using CSharpStrings.Application.DTOs.Responses.StepFourResponses;
+using CSharpStrings.Application.DTOs.Responses.StepOneResponses;
+using CSharpStrings.Application.DTOs.Responses.StepSevenResponses;
+using CSharpStrings.Application.DTOs.Responses.StepSixResponses;
+using CSharpStrings.Application.DTOs.Responses.StepThreeResponses;
+using CSharpStrings.Application.DTOs.Responses.StepTwoResponses;
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
 using Swashbuckle.AspNetCore.Filters;
 using System.Net;
 
-namespace CSharpStrings.Controllers
+namespace CSharpStrings.Api.Controllers
 {
     [ApiController]
     [Route("[controller]")]
