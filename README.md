@@ -1,71 +1,82 @@
-This repository contains a small ASP.NET Core backend that demonstrates basic sales tax calculations.
-Items are parsed from a simple text format, taxes are applied according to their type and whether they are imported, and the API returns the resulting receipt data.
+# CSharpStrings
+
+CSharpStrings is an ASP.NET Core API that implements the String Calculator kata.
+Two alternative solutions are provided:
+
+- **develop_soluzione_A** – a more monolithic approach.
+- **develop_soluzione_B** – the preferred implementation that resolves all seven kata steps through a single service configured by options.
+
+The application is continuously deployed to a VM and publicly reachable at
+[https://strings.raphp.net](https://strings.raphp.net).  There is no AWS deployment.
 
 ## Running the project
 
-1. Ensure you have the [.NET SDK 9](https://dotnet.microsoft.com/) installed.
-2. Build and start the API:
+1. Install the [.NET SDK 9](https://dotnet.microsoft.com/).
+2. Start the API:
 
    ```bash
-   dotnet run --project CSharpSales
+   dotnet run --project src/CSharpStrings/CSharpStrings.Api
    ```
 
-   The application listens on `https://localhost:5001` by default (check the console output for the exact port).
+   By default the API listens on `https://localhost:5001` and exposes Swagger UI at `/swagger`.
 
-## Testing the API
+## API usage
 
-The service exposes a single POST endpoint:
-
-`POST /GetCartResponse`
-
-Several options are available to exercise the API:
-
-* **Swagger UI** – browse to `https://localhost:5001/swagger` after the app starts and invoke the endpoint directly from the documentation page.
-* **Postman** – send a POST request to `https://localhost:5001/GetCartResponse` then select raw body and finally select JSON.
-
-Example:
+Each kata step has its own endpoint under `Strings/` (e.g.
+`POST /Strings/GetStepOne`).
+Send a JSON body containing the numbers string:
 
 ```json
 {
-  "items": [
-    "2 book at 12.49",
-    "1 music CD at 14.99",
-    "1 chocolate bar at 0.85"
-  ]
+  "numbers": "0,1,2"
 }
 ```
 
-And this should be returned:
+The response returns the computed sum and any error message.
+See `STRINGS.md` for the detailed requirements of all seven steps.
 
-```json
+## Deployment
+
+Deployment is handled by the workflow in `.github/workflows/deploy.yml`.
+Every push to the `master` branch publishes the application and deploys it via
+SSH to the VM, then restarts the service.  The live instance is available at
+<https://strings.raphp.net>.
+
+## Example TDD with xUnit
+
+The repository includes a small xUnit project under `tests/`.
+A sample test for the first step looks like this:
+
+```csharp
+using CSharpStrings.Domain.Entities;
+using CSharpStrings.Infrastructure.Services;
+using Xunit;
+
+public class CalculatorServiceTests
 {
-    "items": [
-        "2 book: 24,98",
-        "1 music CD: 16,49",
-        "1 chocolate bar: 0,85"
-    ],
-    "salesTaxes": 1.5000,
-    "total": 42.3200
+    [Theory]
+    [InlineData("", 0)]
+    [InlineData("1", 1)]
+    [InlineData("1,2", 3)]
+    public void StepOne_SumsBasicNumbers(string input, int expected)
+    {
+        var options = new CalculatorOptions
+        {
+            Delimiters = new List<string> { "," },
+            AllowMultipleDelimeters = false,
+            MaxDelimeterSize = 0,
+            MaxNumbers = 3,
+            AllowNegatives = true,
+            IgnoreAboveOrEqual = 0
+        };
+
+        var service = new CalculatorService();
+        var result = service.CalculateSum(input, options);
+
+        Assert.Equal(expected, result);
+    }
 }
 ```
-
-The response will include the formatted receipt lines, the total sales taxes and the overall total.
-
-* **HTTP file** – the repository also contains `CSharpSales.http` which can be used with the Visual Studio HTTP client.
-* **Angular frontend** – a simple client application is planned and will be added soon.
-
-The current deployed server for GitHub Actions pipeline is accessible at `http://sales.raphp.net:5001/GetCartResponse` for direct testing.
-
-### Automated Deployment
-
-This application is automatically deployed via a GitHub Actions pipeline configured in `.github/workflows/deploy.yml`.
-Each push to the `master` branch triggers the build and deploy steps:
-
-1. **Build and Publish:** Compiles the .NET9 application.
-2. **Deploy via SSH:** Copies the published binaries to the production server.
-3. **Service Restart:** Restarts the application on the server via SSH.
-
-The deployment pipeline ensures continuous delivery of the latest version directly to the production environment.
 
 ## License
 
