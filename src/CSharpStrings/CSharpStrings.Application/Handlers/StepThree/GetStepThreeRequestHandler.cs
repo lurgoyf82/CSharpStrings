@@ -1,6 +1,8 @@
-using MediatR;
 using CSharpStrings.Application.DTOs.Requests;
 using CSharpStrings.Application.DTOs.Responses;
+using CSharpStrings.Domain.Entities;
+using CSharpStrings.Infrastructure.Services;
+using MediatR;
 
 namespace CSharpStrings.Application.Handlers.StepThree
 {
@@ -8,29 +10,36 @@ namespace CSharpStrings.Application.Handlers.StepThree
     {
         public Task<GetStepThreeResponseDto> Handle(GetStepThreeRequestDto request, CancellationToken cancellationToken)
         {
-            var response = new GetStepThreeResponseDto();
-            response.Sum = 0;
+            //STEP 2 +
+            //Calling Add with a negative number will throw an exception “negatives not allowed” - and the negative that was passed.
+            //If there are multiple negatives, show all of them in the exception message
 
+                        GetStepThreeResponseDto response = new();
+            /*
+                public List<string>? Delimiters { get; set; } = null;
+                public bool AllowMultipleDelimeters { get; set; } = true;
+                public int MaxDelimeterSize { get; set; } = 1;
+                public int MaxNumbers { get; set; } = 0;
+                public bool AllowNegatives { get; set; } = true;
+                public int IgnoreAboveOrEqual { get; set; } = 0;
+            */
+
+            var options = new CalculatorOptions
+            {
+                Delimiters = new List<string> { "," },
+                AllowMultipleDelimeters = false,
+                MaxDelimeterSize = 0,
+                MaxNumbers = 0,
+                AllowNegatives = false,
+                IgnoreAboveOrEqual = 0
+            };
+
+            var calculatorService = new CalculatorService();
             try
             {
-                if (!string.IsNullOrWhiteSpace(request.Numbers))
-                {
-                    var numbers = request.Numbers.Split(',', StringSplitOptions.RemoveEmptyEntries)
-                        .Select(n => int.TryParse(n, out var x) ? x : 0)
-                        .ToList();
-
-                    var negatives = numbers.Where(n => n < 0).ToList();
-                    
-                    if (negatives.Any())
-                    {
-                        var negativesList = string.Join(", ", negatives);
-                        throw new ArgumentException($"negatives not allowed: {negativesList}");
-                    }
-
-                    response.Sum = numbers.Sum();
-                }
+                response.Sum = calculatorService.CalculateSum(request.Numbers, options);
             }
-            catch (Exception ex)
+            catch (ArgumentException ex)
             {
                 response.Error = ex.Message;
             }

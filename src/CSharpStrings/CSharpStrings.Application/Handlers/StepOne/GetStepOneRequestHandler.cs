@@ -1,12 +1,8 @@
 using CSharpStrings.Application.DTOs.Requests;
 using CSharpStrings.Application.DTOs.Responses;
+using CSharpStrings.Domain.Entities;
+using CSharpStrings.Infrastructure.Services;
 using MediatR;
-using Microsoft.VisualBasic;
-using System;
-using System.ComponentModel;
-using System.Diagnostics.Metrics;
-using System.Reflection;
-using static System.Runtime.InteropServices.JavaScript.JSType;
 
 namespace CSharpStrings.Application.Handlers.StepOne
 {
@@ -14,61 +10,46 @@ namespace CSharpStrings.Application.Handlers.StepOne
     {
         public Task<GetStepOneResponseDto> Handle(GetStepOneRequestDto request, CancellationToken cancellationToken)
         {
-            //## Step 1 
-            //    Create a simple String calculator with a method int Add(string numbers).
+            //Create a simple String calculator with a method int Add(string numbers).
 
-            //    1.The method can take 0, 1 or 2 numbers, separated by commas, and will return their sum, examples:
-            //        “”    should return 0
-            //        “1”   should return 1
-            //        “1,2” should return 3
-            //    2.Start with the simplest test case of an empty string and move to one and two numbers.
-            //    3.Remember to solve things as simply as possible so that you force yourself to write tests you did not think about.
-            //    4.Remember to refactor after each passing test.
+            //The method can take 0, 1 or 2 numbers, separated by commas, and will return their sum, examples:
 
-            var response = new GetStepOneResponseDto();
-            response.Sum = 0;
+            //“” should return 0
+            //“1” should return 1
+            //“1,2” should return 3
 
-            if (string.IsNullOrWhiteSpace(request.Numbers))
+            //Start with the simplest test case of an empty string and move to one and two numbers.
+            //Remember to solve things as simply as possible so that you force yourself to write tests you did not think about.
+            //Remember to refactor after each passing test.
+
+            GetStepOneResponseDto response = new();
+            /*
+                public List<string>? Delimiters { get; set; } = null;
+                public bool AllowMultipleDelimeters { get; set; } = true;
+                public int MaxDelimeterSize { get; set; } = 1;
+                public int MaxNumbers { get; set; } = 0;
+                public bool AllowNegatives { get; set; } = true;
+                public int IgnoreAboveOrEqual { get; set; } = 0;
+            */
+
+            var options = new CalculatorOptions
             {
-                return Task.FromResult(response);
+                Delimiters = new List<string> { "," },
+                AllowMultipleDelimeters = false,
+                MaxDelimeterSize = 0,
+                MaxNumbers = 3,
+                AllowNegatives = true,
+                IgnoreAboveOrEqual = 0
+            };
+
+            var calculatorService = new CalculatorService();
+            try
+            {
+                response.Sum = calculatorService.CalculateSum(request.Numbers, options);
             }
-
-            //if request.Numbers contains a comma, split it into an array of strings
-            if (!request.Numbers.Contains(','))
+            catch (ArgumentException ex)
             {
-                //no virgola
-                try
-                {
-                    //int ok
-                    response.Sum = int.Parse(request.Numbers);
-                }
-                catch (FormatException)
-                {
-                    //errore
-                    response.Error = $"Invalid number: {request.Numbers}";
-                }
-            }
-            else
-            {
-                string[] numberList = request.Numbers.Split(',');
-
-                var number = 0;
-                foreach (string? numberString in numberList)
-                {
-                    try
-                    {
-                        //int ok
-                        number += int.Parse(request.Numbers);
-                    }
-                    catch (FormatException)
-                    {
-                        //errore
-                        response.Error = $"Invalid number: {request.Numbers}";
-                        return Task.FromResult(response);
-                    }
-                }
-
-                response.Sum = number;
+                response.Error= ex.Message;
             }
 
             return Task.FromResult(response);

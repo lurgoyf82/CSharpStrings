@@ -1,7 +1,8 @@
-using MediatR;
 using CSharpStrings.Application.DTOs.Requests;
 using CSharpStrings.Application.DTOs.Responses;
 using CSharpStrings.Domain.Entities;
+using CSharpStrings.Infrastructure.Services;
+using MediatR;
 
 namespace CSharpStrings.Application.Handlers.StepTwo
 {
@@ -9,14 +10,37 @@ namespace CSharpStrings.Application.Handlers.StepTwo
     {
         public Task<GetStepTwoResponseDto> Handle(GetStepTwoRequestDto request, CancellationToken cancellationToken)
         {
-            var response = new GetStepTwoResponseDto();
-            response.Sum = 0;
+            //STEP 1 +
+            //Allow the Add method to handle an unknown amount of numbers.
 
-            if (!string.IsNullOrWhiteSpace(request.Numbers))
+            GetStepTwoResponseDto response = new();
+            /*
+                public List<string>? Delimiters { get; set; } = null;
+                public bool AllowMultipleDelimeters { get; set; } = true;
+                public int MaxDelimeterSize { get; set; } = 1;
+                public int MaxNumbers { get; set; } = 0;
+                public bool AllowNegatives { get; set; } = true;
+                public int IgnoreAboveOrEqual { get; set; } = 0;
+            */
+
+            var options = new CalculatorOptions
             {
-                var numbers = request.Numbers.Split(',', StringSplitOptions.RemoveEmptyEntries)
-                    .Select(n => int.TryParse(n, out var x) ? x : 0);
-                response.Sum = numbers.Sum();
+                Delimiters = new List<string> { "," },
+                AllowMultipleDelimeters = false,
+                MaxDelimeterSize = 0,
+                MaxNumbers = 0,
+                AllowNegatives = true,
+                IgnoreAboveOrEqual = 0
+            };
+
+            var calculatorService = new CalculatorService();
+            try
+            {
+                response.Sum = calculatorService.CalculateSum(request.Numbers, options);
+            }
+            catch (ArgumentException ex)
+            {
+                response.Error = ex.Message;
             }
 
             return Task.FromResult(response);
