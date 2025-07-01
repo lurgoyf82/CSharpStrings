@@ -7,9 +7,9 @@ using System.Text.RegularExpressions;
 
 namespace CSharpStrings.Application.Handlers.StepFive
 {
-    public class GetStepFiveRequestHandler : IRequestHandler<GetStepFiveRequestDto, GetStepFiveResponseDto>
+    public class GetStepFiveRequestHandler : IRequestHandler<GetStepFiveRequestDto, GetStringResponseDto>
     {
-        public Task<GetStepFiveResponseDto> Handle(GetStepFiveRequestDto request, CancellationToken cancellationToken)
+        public Task<GetStringResponseDto> Handle(GetStepFiveRequestDto request, CancellationToken cancellationToken)
         {
             //STEP 4 +
             //Support different delimiters Delimiters can be of any length with the following format:
@@ -18,7 +18,7 @@ namespace CSharpStrings.Application.Handlers.StepFive
             //     //[***]//1***2***3
             //     should return 6
 
-            GetStepFiveResponseDto response = new();
+            GetStringResponseDto response = new();
             /*
                 public List<string>? Delimiters { get; set; } = null;
                 public bool AllowMultipleDelimeters { get; set; } = true;

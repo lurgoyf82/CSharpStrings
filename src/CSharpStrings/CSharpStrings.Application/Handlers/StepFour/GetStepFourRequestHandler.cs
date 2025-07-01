@@ -6,14 +6,14 @@ using MediatR;
 
 namespace CSharpStrings.Application.Handlers.StepFour
 {
-    public class GetStepFourRequestHandler : IRequestHandler<GetStepFourRequestDto, GetStepFourResponseDto>
+    public class GetStepFourRequestHandler : IRequestHandler<GetStepFourRequestDto, GetStringResponseDto>
     {
-        public Task<GetStepFourResponseDto> Handle(GetStepFourRequestDto request, CancellationToken cancellationToken)
+        public Task<GetStringResponseDto> Handle(GetStepFourRequestDto request, CancellationToken cancellationToken)
         {
             //STEP 3 +
             //Numbers bigger than 1000 should be ignored, for example “1000,2” should return 2
 
-            GetStepFourResponseDto response = new();
+            GetStringResponseDto response = new();
             /*
                 public List<string>? Delimiters { get; set; } = null;
                 public bool AllowMultipleDelimeters { get; set; } = true;

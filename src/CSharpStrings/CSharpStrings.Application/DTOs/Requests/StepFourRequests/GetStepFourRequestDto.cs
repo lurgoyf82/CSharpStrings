@@ -3,7 +3,7 @@ using MediatR;
 
 namespace CSharpStrings.Application.DTOs.Requests
 {
-    public class GetStepFourRequestDto : IRequest<GetStepFourResponseDto>
+    public class GetStepFourRequestDto : IRequest<GetStringResponseDto>
     {
         public string Numbers { get; set; } = string.Empty;
     }

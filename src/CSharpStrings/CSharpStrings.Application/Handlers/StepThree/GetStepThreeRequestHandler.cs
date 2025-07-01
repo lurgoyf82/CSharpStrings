@@ -6,15 +6,15 @@ using MediatR;
 
 namespace CSharpStrings.Application.Handlers.StepThree
 {
-    public class GetStepThreeRequestHandler : IRequestHandler<GetStepThreeRequestDto, GetStepThreeResponseDto>
+    public class GetStepThreeRequestHandler : IRequestHandler<GetStepThreeRequestDto, GetStringResponseDto>
     {
-        public Task<GetStepThreeResponseDto> Handle(GetStepThreeRequestDto request, CancellationToken cancellationToken)
+        public Task<GetStringResponseDto> Handle(GetStepThreeRequestDto request, CancellationToken cancellationToken)
         {
             //STEP 2 +
             //Calling Add with a negative number will throw an exception “negatives not allowed” - and the negative that was passed.
             //If there are multiple negatives, show all of them in the exception message
 
-                        GetStepThreeResponseDto response = new();
+                        GetStringResponseDto response = new();
             /*
                 public List<string>? Delimiters { get; set; } = null;
                 public bool AllowMultipleDelimeters { get; set; } = true;

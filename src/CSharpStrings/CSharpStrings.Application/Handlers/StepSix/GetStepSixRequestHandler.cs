@@ -7,9 +7,9 @@ using System.Text.RegularExpressions;
 
 namespace CSharpStrings.Application.Handlers.StepSix
 {
-    public class GetStepSixRequestHandler : IRequestHandler<GetStepSixRequestDto, GetStepSixResponseDto>
+    public class GetStepSixRequestHandler : IRequestHandler<GetStepSixRequestDto, GetStringResponseDto>
     {
-        public Task<GetStepSixResponseDto> Handle(GetStepSixRequestDto request, CancellationToken cancellationToken)
+        public Task<GetStringResponseDto> Handle(GetStepSixRequestDto request, CancellationToken cancellationToken)
         {
             //STEP 5 +
             //Allow multiple delimiters like this:
@@ -18,7 +18,7 @@ namespace CSharpStrings.Application.Handlers.StepSix
             //    //[*][%]//1*2%3
             //    should return 6
 
-            GetStepSixResponseDto response = new();
+            GetStringResponseDto response = new();
             /*
                 public List<string>? Delimiters { get; set; } = null;
                 public bool AllowMultipleDelimeters { get; set; } = true;

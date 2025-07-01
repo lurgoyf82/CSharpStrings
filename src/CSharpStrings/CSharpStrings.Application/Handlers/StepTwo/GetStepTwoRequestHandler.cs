@@ -6,14 +6,14 @@ using MediatR;
 
 namespace CSharpStrings.Application.Handlers.StepTwo
 {
-    public class GetStepTwoRequestHandler : IRequestHandler<GetStepTwoRequestDto, GetStepTwoResponseDto>
+    public class GetStepTwoRequestHandler : IRequestHandler<GetStepTwoRequestDto, GetStringResponseDto>
     {
-        public Task<GetStepTwoResponseDto> Handle(GetStepTwoRequestDto request, CancellationToken cancellationToken)
+        public Task<GetStringResponseDto> Handle(GetStepTwoRequestDto request, CancellationToken cancellationToken)
         {
             //STEP 1 +
             //Allow the Add method to handle an unknown amount of numbers.
 
-            GetStepTwoResponseDto response = new();
+            GetStringResponseDto response = new();
             /*
                 public List<string>? Delimiters { get; set; } = null;
                 public bool AllowMultipleDelimeters { get; set; } = true;

@@ -7,14 +7,14 @@ using System.Text.RegularExpressions;
 
 namespace CSharpStrings.Application.Handlers.StepSeven
 {
-    public class GetStepSevenRequestHandler : IRequestHandler<GetStepSevenRequestDto, GetStepSevenResponseDto>
+    public class GetStepSevenRequestHandler : IRequestHandler<GetStepSevenRequestDto, GetStringResponseDto>
     {
-        public Task<GetStepSevenResponseDto> Handle(GetStepSevenRequestDto request, CancellationToken cancellationToken)
+        public Task<GetStringResponseDto> Handle(GetStepSevenRequestDto request, CancellationToken cancellationToken)
         {
             //STEP 6 +
             //Make sure you can also handle multiple delimiters with length longer than one char
 
-            GetStepSevenResponseDto response = new();
+            GetStringResponseDto response = new();
             /*
                 public List<string>? Delimiters { get; set; } = null;
                 public bool AllowMultipleDelimeters { get; set; } = true;

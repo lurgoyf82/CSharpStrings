@@ -14,13 +14,6 @@ namespace CSharpStrings
             // Add services to the container.
 
             builder.Services.AddControllers();
-            // application services
-            //builder.Services.AddScoped<InputParser>();
-            //builder.Services.AddScoped<CartOutputFormatter>();
-            //builder.Services.AddScoped<CartService>();
-            //builder.Services.AddScoped<GetCartResponseHandler>();
-
-
 
             // Register MediatR
             builder.Services.AddMediatR(cfg => cfg.RegisterServicesFromAssembly(typeof(Program).Assembly));
@@ -82,8 +75,12 @@ namespace CSharpStrings
                 app.UseSwaggerUI(options =>
                 {
                     options.SwaggerEndpoint("/swagger/v1/swagger.json", "CSharpStrings API v1");
+                    options.EnableAnnotations();
                 });
             }
+
+            builder.Services.AddEndpointsApiExplorer();
+            builder.Services.AddSwaggerGen(o => o.EnableAnnotations());
 
 
             app.UseHttpsRedirection();

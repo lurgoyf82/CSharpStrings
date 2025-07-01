@@ -6,9 +6,9 @@ using MediatR;
 
 namespace CSharpStrings.Application.Handlers.StepOne
 {
-    public class GetStepOneRequestHandler : IRequestHandler<GetStepOneRequestDto, GetStepOneResponseDto>
+    public class GetStepOneRequestHandler : IRequestHandler<GetStepOneRequestDto, GetStringResponseDto>
     {
-        public Task<GetStepOneResponseDto> Handle(GetStepOneRequestDto request, CancellationToken cancellationToken)
+        public Task<GetStringResponseDto> Handle(GetStepOneRequestDto request, CancellationToken cancellationToken)
         {
             //Create a simple String calculator with a method int Add(string numbers).
 
@@ -22,7 +22,7 @@ namespace CSharpStrings.Application.Handlers.StepOne
             //Remember to solve things as simply as possible so that you force yourself to write tests you did not think about.
             //Remember to refactor after each passing test.
 
-            GetStepOneResponseDto response = new();
+            GetStringResponseDto response = new();
             /*
                 public List<string>? Delimiters { get; set; } = null;
                 public bool AllowMultipleDelimeters { get; set; } = true;
