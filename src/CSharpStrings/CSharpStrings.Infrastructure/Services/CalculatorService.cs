@@ -8,12 +8,28 @@ namespace CSharpStrings.Infrastructure.Services
         public int CalculateSum(string? input, CalculatorOptions options)
         {
             string? numbersSection = null;
-            if (options.Delimiters == null)
+            if (options.Delimiters == null||true)
             {
                 string? delimiterSection = null;
                 (delimiterSection, numbersSection) = SplitHeader(input);
 
-                options.Delimiters = ParseDelimeterSection(delimiterSection);
+                if(delimiterSection == null && options.Delimiters == null)
+                {
+                    throw new ArgumentException("No delimiters.");
+                }
+
+                if (options.Delimiters == null)
+                {
+                    options.Delimiters = ParseDelimeterSection(delimiterSection);
+                }
+                else
+                {
+                    if (delimiterSection != null)
+                    {
+                        // Aggiungi i delimitatori custom alla lista esistente
+                        options.Delimiters.AddRange(ParseDelimeterSection(delimiterSection));
+                    }
+                }
             }
             else
             {
@@ -22,8 +38,8 @@ namespace CSharpStrings.Infrastructure.Services
 
             if (options.AllowMultipleDelimeters == false)
             {
-                //se options.Delimiters contiene più di un delimitatore, lancia un'eccezione
-                if (options.Delimiters.Count > 1)
+                //se i delimitatori custom (esclusa la virgola) sono piu di uno, lancia un'eccezione
+                if (options.Delimiters.Count > 0 && options.Delimiters.Count(d => d != ",") > 1)
                 {
                     throw new ArgumentException("Multiple delimiters not allowed.");
                 }
@@ -79,12 +95,13 @@ namespace CSharpStrings.Infrastructure.Services
 
 
         // Restituisce i delimitatori custom separati dalla sezione con i numeri
-        public (string delimiterSection, string numbersSection) SplitHeader(string? input)
+        public (string? delimiterSection, string numbersSection) SplitHeader(string? input)
         {
             // Nessun header custom: torna la stringa intera come numeri
             if (string.IsNullOrEmpty(input) || !input.StartsWith("//["))
             {
-                throw new FormatException("Header delimitatori non valido");
+                // throw new FormatException("Header delimitatori non valido");
+                return (null,input);
             }
 
             // Posizione della sequenza finale "]//" (parte dalla posizione 3 per saltare “//[” iniziali)

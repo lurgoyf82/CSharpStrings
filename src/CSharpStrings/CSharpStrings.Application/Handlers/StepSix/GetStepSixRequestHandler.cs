@@ -30,7 +30,7 @@ namespace CSharpStrings.Application.Handlers.StepSix
 
             var options = new CalculatorOptions
             {
-                Delimiters = null,
+                Delimiters = new List<string> { "," },
                 AllowMultipleDelimeters = true,
                 MaxDelimeterSize = 1,
                 MaxNumbers = 0,

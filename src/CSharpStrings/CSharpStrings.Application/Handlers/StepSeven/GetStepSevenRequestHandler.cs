@@ -26,7 +26,7 @@ namespace CSharpStrings.Application.Handlers.StepSeven
 
             var options = new CalculatorOptions
             {
-                Delimiters = null,
+                Delimiters = new List<string> { "," },
                 AllowMultipleDelimeters = true,
                 MaxDelimeterSize = 0,
                 MaxNumbers = 0,

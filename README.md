@@ -37,6 +37,20 @@ Every push to the `master` branch publishes the application and deploys it via
 SSH to the VM, then restarts the service.  The live instance is available at
 <https://strings.raphp.net>.
 
+https://strings.raphp.net will automatically redirect on swagger if open in the browser
+
+While for postman's testing use these endpoints:
+
+https://strings.raphp.net/GetStepOne
+https://strings.raphp.net/GetStepTwo
+https://strings.raphp.net/GetStepThree
+https://strings.raphp.net/GetStepFour
+https://strings.raphp.net/GetStepFive
+https://strings.raphp.net/GetStepSix
+https://strings.raphp.net/GetStepSeven
+
+
+
 ## License
 
 This project is released under the MIT License. See `LICENSE.txt` for details.
