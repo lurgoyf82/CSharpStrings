@@ -3,7 +3,7 @@ name: Deploy CSharpStrings .NET9 VM
 on:
   push:
     branches:
-      - master
+      - main
 
 jobs:
   deploy:
