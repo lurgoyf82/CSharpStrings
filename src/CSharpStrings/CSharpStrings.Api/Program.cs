@@ -29,6 +29,7 @@ namespace CSharpStrings
                     Version = "v1"
                 });
                 options.ExampleFilters();
+                options.EnableAnnotations();
             });
             builder.Services.AddSwaggerExamplesFromAssemblyOf<Program>();
 
@@ -75,13 +76,8 @@ namespace CSharpStrings
                 app.UseSwaggerUI(options =>
                 {
                     options.SwaggerEndpoint("/swagger/v1/swagger.json", "CSharpStrings API v1");
-                    options.EnableAnnotations();
                 });
             }
-
-            builder.Services.AddEndpointsApiExplorer();
-            builder.Services.AddSwaggerGen(o => o.EnableAnnotations());
-
 
             app.UseHttpsRedirection();
 
